@@ -1,0 +1,41 @@
+ion-content{
+  --background: #fff url("https://i.pinimg.com/originals/e5/cd/c6/e5cdc6cec55c6359d79440532a53041f.jpg")  0 0/100% 100% no-repeat ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  //rgb(44, 42, 42);
+}
+ion-input{
+  padding-left: 30px;
+  font-size: 22px;
+
+  color: rgb(224, 54, 54);
+  left: 25px;
+  --border:1px solid;
+  --placeholder-color:rgba(219, 10, 10, 0.952);
+  border-radius: 12px;
+  text-align: center;
+  --placeholder:white;
+  height: 53px;
+  width: 321px;
+  --background:rgb(248, 230, 230);
+}
+ion-button{
+  padding-left: 75px;
+
+  --background:rgb(218, 204, 204) ;
+  width: 300px;
+  color: rgb(255, 1, 1);
+  font-size: 18px;
+  font-weight: bolder;
+
+}
+p{
+  color: wheat;
+  padding-left:85px;
+  font-size: 17px;
+}
+h1{
+  color: white;
+}

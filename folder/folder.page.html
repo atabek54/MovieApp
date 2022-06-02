@@ -1,0 +1,227 @@
+<ion-header>
+  <ion-toolbar color="transparent">
+    <ion-icon
+      (click)="getFavoriteMovies()"
+      id="trigger1-button"
+      size="large"
+      slot="start"
+      name="heart-outline"
+      style="margin: 5px; color: #f7e2e2"
+    ></ion-icon>
+
+    <ion-icon
+      (click)="getWatchlist()"
+      id="trigger2-button"
+      size="large"
+      slot="end"
+      name="bookmark-outline"
+      style="margin: 5px; color: #f7e2e2"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-modal id="favoriteModal" trigger="trigger1-button" [isOpen]="false">
+  <ng-template>
+    <ion-content
+      style="text-align: center; margin: 10px; background: transparent"
+    >
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-buttons style="margin: 10px" slot="start">
+            <ion-back-button
+              style="color: red"
+              (click)="closeModal()"
+            ></ion-back-button>
+          </ion-buttons>
+          <ion-title style="color: #bba3a3">My Favorite Movies</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+
+        <ion-item *ngFor="let movie of favMovies" style="height: 150px;margin-bottom: 50px;">
+          <ion-thumbnail
+          style="height: 150px; width: 95px"
+            slot="start"
+          >
+            <img src="{{imagePath}}{{movie.poster_path}}" />
+          </ion-thumbnail>
+          <ion-label style="color: blanchedalmond"
+            >{{movie.original_title}}</ion-label
+          >
+        </ion-item>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal id="favoriteModal" trigger="trigger2-button" [isOpen]="false">
+  <ng-template>
+    <ion-content style="text-align: center; margin: 10px">
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-buttons style="margin: 10px" slot="start">
+            <ion-back-button
+              style="color: red"
+              (click)="closeModal()"
+            ></ion-back-button>
+          </ion-buttons>
+          <ion-title style="color: #bba3a3">My Watch List</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+
+      <ion-item style="height: 150px;margin-bottom: 50px;" *ngFor="let movie of watchList">
+        <ion-thumbnail style="height: 150px; width: 95px" slot="start">
+          <img src="{{imagePath}}{{movie.poster_path}}" />
+        </ion-thumbnail>
+        <ion-label style="color: blanchedalmond"
+          >{{movie.original_title}}</ion-label
+        >
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-content [fullscreen]="true">
+  <div >
+    <ion-searchbar
+      (ngModelChange)="movieSearch()"
+      [(ngModel)]="kelime"s
+      placeholder="Film Ara.."
+      inputmode="text"
+      type="text"
+    ></ion-searchbar>
+
+    <ion-list-header *ngIf="!kelime" style="    margin-bottom: 25px;">
+      <ion-label style="color: #f7e2e2; font-weight: 700;margin-top: 35px;"
+        >Top 10 Movie</ion-label
+      >
+    </ion-list-header>
+
+    <ion-slides *ngIf="!kelime"
+      [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
+    >
+      <ion-slide *ngFor="let bestmovie of best10Movies  ">
+        <ion-card
+          [routerLink]="['/detay',bestmovie.id]"
+          routerLinkActive="router-link-active"
+          style="
+      background-image: url({{imagePath}}{{bestmovie.poster_path}});
+      height: 250px;background: wheat;
+  background-size: 50%;
+            background-repeat: no-repeat!important;
+            background-size: cover!important;
+            width: 105vw!important;
+            margin-right: 10px;
+          display: inline-block;
+            margin-left: 5%!important;
+            background-attachment: fixed!important;
+            margin-top: -10%!important;
+            background-position: center center!important;
+  "
+        >
+          <div
+            style="
+              background-color: black;
+              position: absolute;
+              top: 200px;
+              color: white;
+              font-size: 18px;
+              font-weight: 700;
+              width: 100%;
+              opacity: 0.8;
+            "
+          >
+            <p>{{bestmovie.original_title}}</p>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+    <div
+      *ngIf="!kelime"
+      style="
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow-x: auto;
+      "
+    ></div>
+
+    <div *ngIf="!kelime">
+      <ion-list-header>
+        <ion-label style="color: #f7e2e2; font-weight: 700"
+          >New Movies</ion-label
+        >
+      </ion-list-header>
+
+      <ion-card
+        [routerLink]="['/detay',trendMovie.id]"
+        routerLinkActive="router-link-active"
+        style="background-image: url({{imagePath}}{{trendMovie.poster_path}});height: 250px;background-size: 50%;
+
+
+    object-fit: cover;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
+  margin-left: 5%!important;
+  background-size: cover;
+  background-attachment: fixed!important;
+  background-position: center center!important;"
+        *ngFor="let trendMovie of trendMovies"
+      >
+        <div
+          style="
+            background-color: black;
+            position: absolute;
+            top: 180px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            width: 100%;
+            text-align: center;
+            height: 80px;
+            opacity: 0.8;
+          "
+        >
+          <p>{{trendMovie.original_title}}</p>
+        </div>
+      </ion-card>
+    </div>
+
+    <ion-card
+      [routerLink]="['/detay',wantedMovie.id]"
+      routerLinkActive="router-link-active"
+      style="background-image: url({{imagePath}}{{wantedMovie.poster_path}});height: 200px;background-size: 50%;
+
+
+    object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover!important;
+  margin-left: 5%!important;
+  background-size: cover;
+  "
+      *ngFor="let wantedMovie of wantedMovies"
+    >
+      <ion-card-header> </ion-card-header>
+
+  <div
+  style="
+    background-color: black;
+    position: absolute;
+    top: 130px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    height: 80px;
+    opacity: 0.8;
+  "
+>
+  <p>{{wantedMovie.original_title}}</p>
+</div>
+    </ion-card>
+  </div>
+
+</ion-content>
