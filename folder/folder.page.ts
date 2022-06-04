@@ -18,7 +18,7 @@ export class FolderPage implements OnInit {
   public kelime:string;
   public session_id: any;
   public imagePath:string='https://image.tmdb.org/t/p/original';
-  public apiKey: string = '9ea34dc5cf3d537cd5205537e222259a';
+  public apiKey: string = '{{API_KEY}}';
 
   constructor(private activatedRoute: ActivatedRoute,private http: HttpClient,public modalController: ModalController,private loadingCtrl:LoadingController) { }
 
