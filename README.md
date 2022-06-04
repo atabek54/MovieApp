@@ -1,5 +1,5 @@
 # MovieApp
-MovieİonicUi, MovieDB API'sini kullanan ve ionic framework,angular ile oluşturulmmuş bir uygulamadır.
+MovieİonicUi, MovieDB API'sini kullanan ve ionic-angular ile oluşturuLmuş bir uygulamadır.
 Amaç sadece Ionic kullanarak gerçek bir uygulama yapmaktır.
 
 ![Login](https://user-images.githubusercontent.com/77456430/171656847-a418e77f-d739-48b8-b727-2232e6613d56.PNG)
