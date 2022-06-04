@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   public password: string = '';
   public request_token: any = '';
 
-  public apiKey: string = '9ea34dc5cf3d537cd5205537e222259a';
+  public apiKey: string = '{{API_KEY}}';
   public session_id:any=[];
   public userData: any = [];
   constructor(private http: HttpClient,private navCtrl:NavController) {}
@@ -42,7 +42,7 @@ this.navCtrl.navigateRoot('folder/Inbox');
   login() {
 
 
-    this.http.post('https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=9ea34dc5cf3d537cd5205537e222259a',{
+    this.http.post('https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key={{API_KEY}}',{
       "username": this.username,
       "password": this.password,
       "request_token": this.request_token
@@ -53,7 +53,7 @@ this.request_token=data;
 this.request_token=this.request_token.request_token;
 
 //session__id al kaydet
-this.http.post('https://api.themoviedb.org/3/authentication/session/new?api_key=9ea34dc5cf3d537cd5205537e222259a',{
+this.http.post('https://api.themoviedb.org/3/authentication/session/new?api_key={{API_KEY}}',{
   "request_token": this.request_token,
 }).subscribe(data=>{
 
