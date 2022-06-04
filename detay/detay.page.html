@@ -4,7 +4,7 @@
 
 <ion-content>
 
-<div style="width: 375px;height: 250px;background-image: url({{imagePath}}{{detayBilgisi.poster_path}});background-size: 50%;
+<div style="width: 375px;height: 250px;background-image: url({{imagePath}}{{detailInfo.poster_path}});background-size: 50%;
 
 opacity: 0.5;
 object-fit: cover;
@@ -19,11 +19,11 @@ background-position: center center!important;">
 
 
 </div>
-<ion-icon (click)="geriGel()" size="large" style="color: white;margin: 10px; position: absolute;top: 20px;left: 10px;" name="arrow-back-outline"></ion-icon>
+<ion-icon (click)="back()" size="large" style="color: white;margin: 10px; position: absolute;top: 20px;left: 10px;" name="arrow-back-outline"></ion-icon>
 
 <div style="height: 140px;">
 
-  <p style="text-align: center;color: rgb(255, 255, 255);font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">{{detayBilgisi.original_title}}</p>
+  <p style="text-align: center;color: rgb(255, 255, 255);font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">{{detailInfo.original_title}}</p>
 
 
       <ion-icon  size="large" style="color: rgb(255, 255, 255);color: rgb(255, 255, 255);
@@ -34,7 +34,7 @@ background-position: center center!important;">
 position: absolute;
 top: 330px;
 left: 20px;
-font-size: 12px;">{{detayBilgisi.runtime}}dk</p>
+font-size: 12px;">{{detailInfo.runtime}}dk</p>
 
 
       <ion-icon (click)="addFavorite()" style="color: white;position: absolute;left: 105px;" size="large"  name="heart-outline"></ion-icon>
@@ -57,7 +57,7 @@ font-size: 12px;">{{detayBilgisi.runtime}}dk</p>
     position: absolute;
     top: 330px;
     left: 213px;
-    font-size: 12px;">{{detayBilgisi.vote_average}}</p>
+    font-size: 12px;">{{detailInfo.vote_average}}</p>
 
 
     <p style="color: rgb(204, 198, 198);
@@ -84,7 +84,7 @@ font-size: 12px;">{{detayBilgisi.runtime}}dk</p>
 
 <p style="padding-left: 15px;color: rgb(192, 74, 74);;">Overview</p>
 
-<p style="margin:15px;color: rgb(240, 227, 227);font-size: 12px;">{{detayBilgisi.overview}}
+<p style="margin:15px;color: rgb(240, 227, 227);font-size: 12px;">{{detailInfo.overview}}
 </p>
 
 
