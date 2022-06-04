@@ -10,10 +10,10 @@ import { LoadingController, NavController, ToastController } from '@ionic/angula
 })
 export class DetayPage implements OnInit {
   public movie_id: any;
-  public apiKey: string = '9ea34dc5cf3d537cd5205537e222259a';
+  public apiKey: string = 'API_KEY';
   public imagePath: string = 'https://image.tmdb.org/t/p/original';
   public session_id: any;
-  public detayBilgisi: any = [];
+  public detailInfo: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,7 +26,7 @@ export class DetayPage implements OnInit {
   ngOnInit() {
 
     this.movie_id = this.activatedRoute.snapshot.paramMap.get('movie_id');
-    this.detayGetir();
+    this.getDetail();
     this.session_id = JSON.parse(localStorage.getItem('user_session_id'));
 
   }
@@ -39,7 +39,7 @@ export class DetayPage implements OnInit {
     });
     toast.present();
   }
- async detayGetir() {
+ async getDetail() {
     const loading=await this.loadingCtrl.create();
     loading.present();
     this.http
@@ -50,14 +50,14 @@ export class DetayPage implements OnInit {
           this.apiKey
       )
       .subscribe((data) => {
-        this.detayBilgisi = data;
-        console.log(this.detayBilgisi);
-    console.log(this.detayBilgisi.id);
+        this.detailInfo = data;
+        console.log(this.detailInfo);
+    console.log(this.detailInfo.id);
     loading.dismiss();
       });
   }
 
-  geriGel() {
+  back() {
     this.loadingCtrl.dismiss();
     this.navCtrl.navigateRoot('/folder/Inbox');
   }
@@ -65,11 +65,11 @@ export class DetayPage implements OnInit {
   addFavorite() {
     this.http
       .post(
-        'https://api.themoviedb.org/3/account/{account_id}/favorite?api_key=9ea34dc5cf3d537cd5205537e222259a&session_id=' +
+        'https://api.themoviedb.org/3/account/{account_id}/favorite?api_key={{API_KEY}}&session_id=' +
           this.session_id,
         {
           media_type: 'movie',
-          media_id: this.detayBilgisi.id,
+          media_id: this.detailInfo.id,
           favorite: true,
         }
       )
@@ -83,10 +83,10 @@ export class DetayPage implements OnInit {
   addWatchlist(){
     this.http
     .post(
-      'https://api.themoviedb.org/3/account/{account_id}/watchlist?api_key=9ea34dc5cf3d537cd5205537e222259a&session_id='+this.session_id,
+      'https://api.themoviedb.org/3/account/{account_id}/watchlist?api_key={{API_KEY}}&session_id='+this.session_id,
       {
         media_type: 'movie',
-        media_id: this.detayBilgisi.id,
+        media_id: this.detailInfo.id,
         watchlist: true,
       }
     )
